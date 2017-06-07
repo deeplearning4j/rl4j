@@ -220,11 +220,19 @@ public abstract class QLearningDiscrete<O extends Encodable> extends QLearning<O
 
 
             double previousV = dqnOutputAr.getDouble(i, actions[i]);
-            double lowB = previousV - getConfiguration().getErrorClamp();
-            double highB = previousV + getConfiguration().getErrorClamp();
-            double clamped = Math.min(highB, Math.max(yTar, lowB));
+            double tdError = yTar - previousV;
+            double clamp =  getConfiguration().getErrorClamp();
+            
+            if (Math.abs(tdError) > clamp) {
+                if (tdError < clamp) {
+                    tdError = clamp;
+                }
+                if (tdError > clamp) {
+                    tdError = -clamp;
+                }
+            }
 
-            dqnOutputAr.putScalar(i, actions[i], clamped);
+            dqnOutputAr.putScalar(i, actions[i], tdError);
         }
 
         return new Pair(obs, dqnOutputAr);
