@@ -68,7 +68,7 @@ public abstract class AsyncThread<O extends Encodable, A, AS extends ActionSpace
                 double score = subEpochReturn.getScore();
                 if (getMdp().isDone()) {
 
-                    if (getThreadNumber() == 1)
+                    if (getThreadNumber() == 0)
                         getDataManager().appendStat(
                                         new AsyncStatEntry(getStepCounter(), epochCounter, rewards, length, score));
 

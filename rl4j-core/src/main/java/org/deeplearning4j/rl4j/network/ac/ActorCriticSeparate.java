@@ -1,6 +1,7 @@
 package org.deeplearning4j.rl4j.network.ac;
 
 import org.apache.commons.lang3.NotImplementedException;
+import org.deeplearning4j.nn.gradient.DefaultGradient;
 import org.deeplearning4j.nn.gradient.Gradient;
 import org.deeplearning4j.nn.graph.ComputationGraph;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
@@ -52,10 +53,15 @@ public class ActorCriticSeparate implements IActorCritic {
 
 
     public void applyGradient(Gradient[] gradient, int batchSize) {
-        valueNet.getUpdater().update(valueNet, gradient[0], 1, batchSize);
-        valueNet.params().subi(gradient[0].gradient());
-        policyNet.getUpdater().update(policyNet, gradient[1], 1, batchSize);
-        policyNet.params().subi(gradient[1].gradient());
+        INDArray g0 = valueNet.getFlattenedGradients();
+        g0.assign(gradient[0].gradient());
+        valueNet.getUpdater().update(valueNet, new DefaultGradient(g0), 1, batchSize);
+        valueNet.params().subi(g0);
+
+        INDArray g1 = policyNet.getFlattenedGradients();
+        g1.assign(gradient[1].gradient());
+        policyNet.getUpdater().update(policyNet, new DefaultGradient(g1), 1, batchSize);
+        policyNet.params().subi(g1);
     }
 
     public double getLatestScore() {
