@@ -9,6 +9,9 @@ fi
 RELEASE_VERSION=$1
 SNAPSHOT_VERSION=$2
 STAGING_REPOSITORY=${3:-}
+if [[ -z ${SKIP_BUILD:-} ]]; then
+    SKIP_BUILD=0
+fi
 
 echo "Releasing version $RELEASE_VERSION ($SNAPSHOT_VERSION) to repository $STAGING_REPOSITORY"
 echo "========================================================================================"
@@ -23,10 +26,13 @@ sed -i "s/<datavec.version>.*<\/datavec.version>/<datavec.version>$RELEASE_VERSI
 sed -i "s/<dl4j.version>.*<\/dl4j.version>/<dl4j.version>$RELEASE_VERSION<\/dl4j.version>/" pom.xml
 mvn versions:set -DallowSnapshots=true -DgenerateBackupPoms=false -DnewVersion=$RELEASE_VERSION
 
-mvn clean deploy -Dgpg.executable=gpg2 -DperformRelease -Psonatype-oss-release -DskipTests -DstagingRepositoryId=$STAGING_REPOSITORY
+if [[ "${SKIP_BUILD}" == "0" ]]; then
+    mvn clean deploy -Dgpg.executable=gpg2 -DperformRelease -Psonatype-oss-release -DskipTests -DstagingRepositoryId=$STAGING_REPOSITORY
+fi
 
 git commit -a -m "Update to version $RELEASE_VERSION"
 git tag -a -m "rl4j-$RELEASE_VERSION" "rl4j-$RELEASE_VERSION"
+git tag -a -f -m "rl4j-$RELEASE_VERSION" "latest_release"
 
 sed -i "s/<nd4j.version>.*<\/nd4j.version>/<nd4j.version>$SNAPSHOT_VERSION<\/nd4j.version>/" pom.xml
 sed -i "s/<datavec.version>.*<\/datavec.version>/<datavec.version>$SNAPSHOT_VERSION<\/datavec.version>/" pom.xml
