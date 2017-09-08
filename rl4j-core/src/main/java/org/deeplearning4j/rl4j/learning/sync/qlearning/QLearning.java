@@ -2,7 +2,7 @@ package org.deeplearning4j.rl4j.learning.sync.qlearning;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.rl4j.learning.sync.ExpReplay;
 import org.deeplearning4j.rl4j.learning.sync.IExpReplay;
 import org.deeplearning4j.rl4j.learning.sync.SyncLearning;

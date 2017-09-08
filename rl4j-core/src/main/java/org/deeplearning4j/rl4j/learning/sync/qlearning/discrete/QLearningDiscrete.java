@@ -3,7 +3,7 @@ package org.deeplearning4j.rl4j.learning.sync.qlearning.discrete;
 import lombok.Getter;
 import lombok.Setter;
 import org.nd4j.linalg.primitives.Pair;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.rl4j.learning.Learning;
 import org.deeplearning4j.rl4j.learning.sync.Transition;
 import org.deeplearning4j.rl4j.learning.sync.qlearning.QLearning;

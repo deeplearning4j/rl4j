@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.bytedeco.javacpp.Pointer;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.rl4j.mdp.MDP;
 import org.deeplearning4j.rl4j.space.ArrayObservationSpace;
 import org.deeplearning4j.rl4j.space.DiscreteSpace;

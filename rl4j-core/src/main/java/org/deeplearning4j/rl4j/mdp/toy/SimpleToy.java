@@ -3,7 +3,7 @@ package org.deeplearning4j.rl4j.mdp.toy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.rl4j.learning.NeuralNetFetchable;
 import org.deeplearning4j.rl4j.mdp.MDP;
 import org.deeplearning4j.rl4j.network.dqn.IDQN;

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.rl4j.mdp.MDP;
 import org.deeplearning4j.rl4j.network.NeuralNet;
 import org.deeplearning4j.rl4j.space.ActionSpace;

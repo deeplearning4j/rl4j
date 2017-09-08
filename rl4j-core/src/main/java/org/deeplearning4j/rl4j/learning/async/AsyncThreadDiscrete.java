@@ -1,7 +1,7 @@
 package org.deeplearning4j.rl4j.learning.async;
 
 import lombok.Getter;
-import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.mdp.StepReply;
 import org.deeplearning4j.nn.gradient.Gradient;
 import org.deeplearning4j.rl4j.learning.IHistoryProcessor;
 import org.deeplearning4j.rl4j.learning.Learning;
