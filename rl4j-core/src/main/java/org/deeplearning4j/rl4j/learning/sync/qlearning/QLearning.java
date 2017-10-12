@@ -35,7 +35,7 @@ public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A
         expReplay = new ExpReplay<>(conf.getExpRepMaxSize(), conf.getBatchSize(), conf.getSeed());
     }
 
-    protected abstract EpsGreedy<O, A, AS> getEgPolicy();
+    protected abstract EpsGreedy<O, A> getEgPolicy();
 
     public abstract MDP<O, A, AS> getMdp();
 
