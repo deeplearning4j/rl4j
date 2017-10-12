@@ -1,8 +1,11 @@
 package org.deeplearning4j.rl4j.learning.sync.qlearning;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.deeplearning4j.gym.StepReply;
+import org.deeplearning4j.rl4j.learning.StepCounter;
 import org.deeplearning4j.rl4j.learning.sync.ExpReplay;
 import org.deeplearning4j.rl4j.learning.sync.IExpReplay;
 import org.deeplearning4j.rl4j.learning.sync.SyncLearning;
@@ -19,20 +22,28 @@ import java.util.List;
 
 /**
  * @author rubenfiszel (ruben.fiszel@epfl.ch) 7/19/16.
- *
+ * <p>
  * Mother class for QLearning in the Discrete domain and
  * hopefully one day for the  Continuous domain.
  */
 @Slf4j
 public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A>>
-                extends SyncLearning<O, A, AS, IDQN> {
+        extends SyncLearning<O, A, AS, IDQN> {
 
     @Getter
     final private IExpReplay<A> expReplay;
 
     public QLearning(QLConfiguration conf) {
-        super(conf);
-        expReplay = new ExpReplay<>(conf.getExpRepMaxSize(), conf.getBatchSize(), conf.getSeed());
+        this(conf, new StepCounter());
+    }
+
+    public QLearning(QLConfiguration conf, StepCounter counter) {
+        this(conf, counter, new ExpReplay<A>(conf.getExpRepMaxSize(), conf.getBatchSize(), conf.getSeed()));
+    }
+
+    public QLearning(QLConfiguration conf, StepCounter counter, IExpReplay<A> replay) {
+        super(conf, counter);
+        this.expReplay = replay;
     }
 
     protected abstract EpsGreedy<O, A> getEgPolicy();
@@ -110,7 +121,7 @@ public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A
 
 
         StatEntry statEntry = new QLStatEntry(getStepCounter(), getEpochCounter(), reward, step, scores,
-                        getEgPolicy().getEpsilon(), startQ, meanQ);
+                getEgPolicy().getEpsilon(), startQ, meanQ);
 
         return statEntry;
 
@@ -140,6 +151,8 @@ public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A
 
     }
 
+    @JsonDeserialize(builder = QLConfiguration.QLConfigurationBuilder.class)
+    @Value
     @Data
     @AllArgsConstructor
     @Builder
@@ -160,7 +173,8 @@ public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A
         int epsilonNbStep;
         boolean doubleDQN;
 
+        @JsonPOJOBuilder(withPrefix = "")
+        public static final class QLConfigurationBuilder {
+        }
     }
-
-
 }

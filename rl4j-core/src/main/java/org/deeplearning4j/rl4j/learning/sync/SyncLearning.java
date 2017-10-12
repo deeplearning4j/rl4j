@@ -2,6 +2,7 @@ package org.deeplearning4j.rl4j.learning.sync;
 
 import lombok.extern.slf4j.Slf4j;
 import org.deeplearning4j.rl4j.learning.Learning;
+import org.deeplearning4j.rl4j.learning.StepCounter;
 import org.deeplearning4j.rl4j.network.NeuralNet;
 import org.deeplearning4j.rl4j.space.ActionSpace;
 import org.deeplearning4j.rl4j.space.Encodable;
@@ -23,6 +24,11 @@ public abstract class SyncLearning<O extends Encodable, A, AS extends ActionSpac
 
     public SyncLearning(LConfiguration conf) {
         super(conf);
+    }
+
+    public SyncLearning(LConfiguration conf,
+                        StepCounter counter) {
+        super(conf, counter);
     }
 
     public void train() {
