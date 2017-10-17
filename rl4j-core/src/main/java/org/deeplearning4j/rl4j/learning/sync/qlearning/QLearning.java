@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Slf4j
 public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A>>
-        extends SyncLearning<O, A, AS, IDQN> {
+                extends SyncLearning<O, A, AS, IDQN> {
 
     @Getter
     final private IExpReplay<A> expReplay;
@@ -112,7 +112,7 @@ public abstract class QLearning<O extends Encodable, A, AS extends ActionSpace<A
 
 
         StatEntry statEntry = new QLStatEntry(getStepCounter(), getEpochCounter(), reward, step, scores,
-                getEgPolicy().getEpsilon(), startQ, meanQ);
+                        getEgPolicy().getEpsilon(), startQ, meanQ);
 
         return statEntry;
 
