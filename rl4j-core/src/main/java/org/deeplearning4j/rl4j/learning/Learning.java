@@ -30,8 +30,8 @@ public abstract class Learning<O extends Encodable, A, AS extends ActionSpace<A>
     @Getter
     final private Random random;
 
-    @Getter
-    private int stepCounter = 0;
+    final private StepCounter counter;
+
     @Getter
     private int epochCounter = 0;
 
@@ -39,7 +39,12 @@ public abstract class Learning<O extends Encodable, A, AS extends ActionSpace<A>
     private IHistoryProcessor historyProcessor = null;
 
     public Learning(LConfiguration conf) {
-        random = new Random(conf.getSeed());
+        this(conf, new StepCounter());
+    }
+
+    public Learning(LConfiguration conf, StepCounter counter) {
+        this.random = new Random(conf.getSeed());
+        this.counter = counter;
     }
 
     public static Integer getMaxAction(INDArray vector) {
@@ -117,7 +122,12 @@ public abstract class Learning<O extends Encodable, A, AS extends ActionSpace<A>
     public abstract NN getNeuralNet();
 
     public int incrementStep() {
-        return stepCounter++;
+        return this.counter.increment();
+    }
+
+    @Override
+    public int getStepCounter() {
+        return this.counter.getStepCounter();
     }
 
     public int incrementEpoch() {
