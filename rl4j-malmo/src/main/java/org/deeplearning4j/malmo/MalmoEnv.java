@@ -34,11 +34,11 @@ public class MalmoEnv implements MDP<MalmoBox, Integer, DiscreteSpace> {
             throw new RuntimeException("MALMO_HOME must be set to your Malmo environement.");
 
         try {
-            if (Files.exists(malmoHome + "/Java_Examples/libMalmoJava.jnilib")) {
+            if (Files.exists(Paths.get(malmoHome + "/Java_Examples/libMalmoJava.jnilib"))) {
             	System.load(malmoHome + "/Java_Examples/libMalmoJava.jnilib");
-            } else if (Files.exists(malmoHome + "/Java_Examples/MalmoJava.dll")) {
+            } else if (Files.exists(Paths.get(malmoHome + "/Java_Examples/MalmoJava.dll"))) {
             	System.load(malmoHome + "/Java_Examples/MalmoJava.dll");
-            } else if (Files.exists(malmoHome + "/Java_Examples/libMalmoJava.so")) {
+            } else if (Files.exists(Paths.get(malmoHome + "/Java_Examples/libMalmoJava.so"))) {
             	System.load(malmoHome + "/Java_Examples/libMalmoJava.so");
             } else {
                 System.load("MalmoJava");
