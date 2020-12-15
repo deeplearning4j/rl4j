@@ -1,6 +1,8 @@
 # RL4J: Reinforcement Learning for Java
 
-RL4J is a reinforcement learning framework integrated with deeplearning4j and released under an Apache 2.0 open-source license. By contributing code to this repository, you agree to make your contribution available under an Apache 2.0 license.
+NOTE: RL4J IS NO LONGER SUPPORTED.
+
+RL4J is a reinforcement learning framework integrated with deeplearning4j and released under an Apache 2.0 open-source license. 
 
 * DQN (Deep Q Learning with double DQN)
 * Async RL (A3C, Async NStepQlearning)
