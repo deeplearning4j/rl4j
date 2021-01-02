@@ -1,6 +1,6 @@
 # RL4J: Reinforcement Learning for Java
 
-NOTE: RL4J IS NO LONGER SUPPORTED.
+For support questions regarding RL4J, please contact help@pathmind.com.
 
 RL4J is a reinforcement learning framework integrated with deeplearning4j and released under an Apache 2.0 open-source license. 
 
@@ -19,9 +19,6 @@ A useful blog post to introduce you to reinforcement learning, DQN and Async RL:
 
 [Blog post](https://rubenfiszel.github.io/posts/rl4j/2016-08-24-Reinforcement-Learning-and-DQN.html)
 
-[Examples](https://github.com/eclipse/deeplearning4j-examples/tree/master/rl4j-examples)
-
-[Cartpole example](https://github.com/eclipse/deeplearning4j-examples/blob/master/rl4j-examples/src/main/java/org/deeplearning4j/examples/rl4j/Cartpole.java)
 
 # Quickstart
 
@@ -30,10 +27,6 @@ A useful blog post to introduce you to reinforcement learning, DQN and Async RL:
 # Visualisation
 
 [webapp-rl4j](https://github.com/rubenfiszel/webapp-rl4j)
-
-# Quicktry cartpole:
-
-* run with this [main](https://github.com/eclipse/deeplearning4j-examples/blob/master/rl4j-examples/src/main/java/org/deeplearning4j/examples/rl4j/Cartpole.java)
 
 # Doom
 
@@ -51,7 +44,6 @@ Doom is not ready yet but you can make it work if you feel adventurous with some
 * export MALMO_HOME=YOURMALMO_FOLDER
 * export MALMO_XSD_PATH=$MALMO_HOME/Schemas
 * launch malmo per [instructions](https://github.com/Microsoft/malmo#launching-minecraft-with-our-mod)
-* run with this [main](https://github.com/eclipse/deeplearning4j-examples/blob/master/rl4j-examples/src/main/java/org/deeplearning4j/examples/rl4j/MalmoPixels.java)
 
 # WIP
 
